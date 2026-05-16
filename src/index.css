@@ -1,0 +1,465 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Soft, calming color palette for mental wellness */
+    --background: 220 40% 8%;
+    --foreground: 200 15% 85%;
+
+    --card: 220 40% 12%;
+    --card-foreground: 200 15% 85%;
+
+    --popover: 220 40% 15%;
+    --popover-foreground: 200 15% 85%;
+
+    /* Soft teal primary for calm, trust, and serenity */
+    --primary: 185 65% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 185 75% 65%;
+
+    /* Warm coral accent for encouragement and warmth */
+    --secondary: 15 85% 70%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 200 20% 94%;
+    --muted-foreground: 200 10% 45%;
+
+    --accent: 340 80% 75%;
+    --accent-foreground: 200 15% 20%;
+
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 88%;
+    --input: 200 20% 88%;
+    --ring: 185 65% 55%;
+
+    --radius: 1rem;
+
+    /* Custom wellness gradients */
+    --gradient-calm: linear-gradient(135deg, hsl(185 65% 55%) 0%, hsl(200 60% 65%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(15 85% 70%) 0%, hsl(340 80% 75%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(200 25% 98%) 0%, hsl(185 20% 96%) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(185 65% 55% / 0.15);
+    --shadow-glow: 0 0 30px hsl(185 75% 65% / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 40% 5%;
+    --foreground: 200 15% 90%;
+
+    --card: 220 40% 8%;
+    --card-foreground: 200 15% 90%;
+
+    --popover: 200 18% 15%;
+    --popover-foreground: 200 15% 95%;
+
+    --primary: 185 60% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 185 70% 60%;
+
+    --secondary: 15 80% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 200 15% 20%;
+    --muted-foreground: 200 10% 60%;
+
+    --accent: 340 75% 70%;
+    --accent-foreground: 200 15% 95%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 15% 25%;
+    --input: 200 15% 25%;
+    --ring: 185 60% 50%;
+    
+    --gradient-calm: linear-gradient(135deg, hsl(185 60% 50%) 0%, hsl(200 55% 60%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(15 80% 65%) 0%, hsl(340 75% 70%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(200 20% 12%) 0%, hsl(185 18% 14%) 100%);
+    
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 30px hsl(185 70% 60% / 0.2);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground relative overflow-x-hidden;
+    background: linear-gradient(135deg, 
+      hsl(220 40% 8%) 0%, 
+      hsl(230 45% 6%) 25%, 
+      hsl(240 50% 4%) 50%, 
+      hsl(230 45% 6%) 75%, 
+      hsl(220 40% 8%) 100%
+    );
+    min-height: 100vh;
+  }
+}
+
+/* Animated Background Gradients */
+@keyframes gradientShift {
+  0%, 100% { 
+    background-position: 0% 50%; 
+  }
+  50% { 
+    background-position: 100% 50%; 
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-20px) rotate(5deg); 
+  }
+  66% { 
+    transform: translateY(-10px) rotate(-3deg); 
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.2); 
+  }
+  50% { 
+    box-shadow: 0 0 50px hsl(var(--primary) / 0.4); 
+  }
+}
+
+@keyframes wave {
+  0% { 
+    transform: translateX(-100%) translateY(0px); 
+  }
+  50% { 
+    transform: translateX(0%) translateY(-10px); 
+  }
+  100% { 
+    transform: translateX(100%) translateY(0px); 
+  }
+}
+
+/* Particle Effect */
+@keyframes particles {
+  0% { 
+    opacity: 0; 
+    transform: translateY(100vh) scale(0); 
+  }
+  10% { 
+    opacity: 1; 
+  }
+  90% { 
+    opacity: 1; 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-100vh) scale(1); 
+  }
+}
+
+/* Mood-based color transitions */
+@keyframes moodShift {
+  0% { filter: hue-rotate(0deg) saturate(1); }
+  25% { filter: hue-rotate(90deg) saturate(1.2); }
+  50% { filter: hue-rotate(180deg) saturate(0.8); }
+  75% { filter: hue-rotate(270deg) saturate(1.1); }
+  100% { filter: hue-rotate(360deg) saturate(1); }
+}
+
+/* Utility Classes */
+.animated-gradient {
+  background: linear-gradient(45deg, 
+    hsl(var(--primary)), 
+    hsl(var(--secondary)), 
+    hsl(var(--accent)), 
+    hsl(var(--primary))
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.emotional-gradient {
+  background: linear-gradient(135deg, 
+    hsl(185 65% 55% / 0.8) 0%,
+    hsl(200 60% 65% / 0.6) 25%,
+    hsl(15 85% 70% / 0.7) 50%,
+    hsl(340 80% 75% / 0.5) 75%,
+    hsl(185 65% 55% / 0.8) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+.glassmorphism {
+  background: rgba(15, 25, 45, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+}
+
+.glassmorphism-dark {
+  background: rgba(5, 15, 30, 0.3);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+.floating-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.mood-shift {
+  animation: moodShift 20s ease-in-out infinite;
+}
+
+.wave-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent
+  );
+  animation: wave 3s ease-in-out infinite;
+}
+
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: hsl(var(--primary) / 0.6);
+  border-radius: 50%;
+  animation: particles 15s linear infinite;
+}
+
+.particle:nth-child(2n) {
+  background: hsl(var(--secondary) / 0.4);
+  animation-delay: -5s;
+  animation-duration: 18s;
+}
+
+.particle:nth-child(3n) {
+  background: hsl(var(--accent) / 0.3);
+  animation-delay: -10s;
+  animation-duration: 12s;
+}
+
+/* Soft Shadows */
+.soft-shadow {
+  box-shadow: var(--shadow-soft);
+}
+
+.glow-shadow {
+  box-shadow: var(--shadow-glow);
+}
+
+.deep-shadow {
+  box-shadow: 
+    0 4px 20px -4px hsl(var(--primary) / 0.15),
+    0 10px 40px -8px hsl(var(--primary) / 0.1),
+    0 20px 80px -16px hsl(var(--primary) / 0.05);
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: var(--transition-smooth);
+}
+
+.bounce-transition {
+  transition: var(--transition-bounce);
+}
+
+/* Emotional state classes */
+.mood-calm {
+  background: linear-gradient(135deg, 
+    hsl(185 65% 55% / 0.1), 
+    hsl(200 60% 65% / 0.05)
+  );
+}
+
+.mood-energetic {
+  background: linear-gradient(135deg, 
+    hsl(15 85% 70% / 0.1), 
+    hsl(340 80% 75% / 0.05)
+  );
+}
+
+.mood-focused {
+  background: linear-gradient(135deg, 
+    hsl(240 60% 60% / 0.1), 
+    hsl(260 55% 65% / 0.05)
+  );
+}
+
+.mood-peaceful {
+  background: linear-gradient(135deg, 
+    hsl(120 40% 70% / 0.1), 
+    hsl(140 35% 75% / 0.05)
+  );
+}
+
+/* Enhanced Animation Classes */
+.floating-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-button {
+  animation: float 4s ease-in-out infinite;
+}
+
+.cta-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-highlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent, 
+    hsla(var(--primary) / 0.05), 
+    transparent
+  );
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}
+
+/* Moving Emoji Animations - Slower and gentler */
+@keyframes emojiFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.5;
+  }
+  25% { 
+    transform: translateY(-8px) rotate(15deg) scale(1.02);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-5px) rotate(30deg) scale(1.01);
+    opacity: 0.8;
+  }
+  75% { 
+    transform: translateY(-6px) rotate(45deg) scale(1.02);
+    opacity: 0.7;
+  }
+}
+
+@keyframes emojiDrift {
+  0% { 
+    transform: translateX(0) translateY(0) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% { 
+    transform: translateX(3px) translateY(-2px) rotate(10deg);
+    filter: hue-rotate(30deg);
+  }
+  50% { 
+    transform: translateX(2px) translateY(-3px) rotate(20deg);
+    filter: hue-rotate(60deg);
+  }
+  75% { 
+    transform: translateX(-2px) translateY(-2px) rotate(30deg);
+    filter: hue-rotate(90deg);
+  }
+  100% { 
+    transform: translateX(0) translateY(0) rotate(40deg);
+    filter: hue-rotate(120deg);
+  }
+}
+
+@keyframes emojiPulse {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: scale(1.05) rotate(5deg);
+    opacity: 0.8;
+  }
+}
+
+/* Utility classes for emoji animations - Slower durations */
+.emoji-float {
+  animation: emojiFloat 12s ease-in-out infinite;
+}
+
+.emoji-drift {
+  animation: emojiDrift 18s linear infinite;
+}
+
+.emoji-pulse {
+  animation: emojiPulse 8s ease-in-out infinite;
+}
